@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    background-color: darkslategray;
+    color: white;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 30px;
+}
+
+#form-extraBtns {
+    display: inline-block;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+label {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#input-city {
+    margin-top: 5px;
+    height: 25px;
+}
+
+#search-btn {
+    height: 30px;
+    width: 30px;
+    background-color: blue;
+    color: white;
+    border: thin;
+    border-radius: 5px;
+}
