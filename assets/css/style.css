@@ -18,6 +18,10 @@
     padding: 10px;
 }
 
+form {
+    margin-bottom: 20px;
+}
+
 label {
     font-size: 25px;
     font-weight: bold;
@@ -26,6 +30,7 @@ label {
 #input-city {
     margin-top: 5px;
     height: 25px;
+    width: 150px;
 }
 
 #search-btn {
@@ -35,4 +40,15 @@ label {
     color: white;
     border: thin;
     border-radius: 5px;
+}
+
+.btn {
+    width: 190px;
+    height: 25px;
+    text-align: left;
+    font-size: 15px;
+    border: thin;
+    border-radius: 5px;
+    padding-left: 10px;
+    margin-top: 5px;
 }

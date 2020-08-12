@@ -12,14 +12,19 @@
         <h1>Weather Dashboard</h1>
     </header>
     <main id="container">
-        <div id="form-extraBtns">
-            <form>
+        <section id="form-extraBtns">
+            <form id="city-form">
                 <label for="input-city">Search for a City:</label><br>
                 <input type="text" name="input-city" id="input-city">
                 <button type="submit" id="search-btn" class="fas fa-search"></button>
             </form>
-        </div>
+        </section>
+        <section id="weather-display">
+            <div id="current-weather"></div>
+            <div id="five-day"></div>
+        </section>
     </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="assets/javascript/script.js"></script>
 </body>
 </html>
