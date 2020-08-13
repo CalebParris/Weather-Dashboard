@@ -13,8 +13,6 @@
 }
 
 #form-extraBtns {
-    display: inline-block;
-    background-color: lightgray;
     padding: 10px;
 }
 
@@ -47,8 +45,21 @@ label {
     height: 25px;
     text-align: left;
     font-size: 15px;
-    border: thin;
     border-radius: 5px;
     padding-left: 10px;
     margin-top: 5px;
+}
+
+h3 {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+p {
+    margin-bottom: 5px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
 }
