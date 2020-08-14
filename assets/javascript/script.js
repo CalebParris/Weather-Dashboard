@@ -15,6 +15,7 @@ $("#search-btn").on("click", function(event){
 
     currentWeather(cityName);
     fiveDayWeather(cityName);
+    localStorage.setItem("City", cityName);
 
 
     $("#city-form").trigger("reset");
@@ -24,6 +25,7 @@ searchSection.on("click", ".btn", function(){
     var cityName = $(this).attr("data-city");
     currentWeather(cityName);
     fiveDayWeather(cityName);
+    localStorage.setItem("City", cityName);
 });
 
 function currentWeather(city){
@@ -64,13 +66,11 @@ function currentWeather(city){
 
         $("#current-weather").append(currentTemp, currentHumidity, windSpeed);
 
-        $(".btn").attr("data-lat", response.coord.lat);
-        $(".btn").attr("data-lon", response.coord.lon);
-
-        lattitude = $(".btn").attr("data-lat");
-        longitude = $(".btn").attr("data-lon");
+        lattitude = response.coord.lat;
+        longitude = response.coord.lon;
         console.log(lattitude, longitude);
         uvIndex(lattitude, longitude);
+
 
     });
 }
@@ -150,3 +150,6 @@ function uvIndex(lat, lon){
 
     });
 }
+
+currentWeather(localStorage.getItem("City"));
+fiveDayWeather(localStorage.getItem("City"));
