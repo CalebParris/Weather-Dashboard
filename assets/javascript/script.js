@@ -7,6 +7,10 @@ $("#search-btn").on("click", function(event){
     event.preventDefault();
     var cityName = inputCity.val();
 
+    if (cityName.trim() === ""){
+        return false;
+    }
+
     var cityButton = $("<button>");
     cityButton.attr("data-city", inputCity.val());
     cityButton.text(inputCity.val());
