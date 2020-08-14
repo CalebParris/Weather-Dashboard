@@ -6,8 +6,9 @@ var lattitude, longitude;
 $("#search-btn").on("click", function(event){
     event.preventDefault();
     var cityName = inputCity.val();
+    var regex = /^[a-zA-Z\ ]*$/;
 
-    if (cityName.trim() === ""){
+    if (cityName.trim() === "" || cityName !== regex){
         return false;
     }
 
