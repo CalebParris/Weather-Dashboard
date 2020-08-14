@@ -91,3 +91,18 @@ p {
 #weather-display {
     margin-right: 100px;
 }
+
+.favorable {
+    background-color: green;
+    display: inline-block;
+}
+
+.moderate {
+    background-color: yellow;
+    display: inline-block;
+}
+
+.severe {
+    background-color: red;
+    display: inline-block;
+}

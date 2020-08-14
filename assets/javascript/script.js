@@ -1,33 +1,42 @@
+var inputCity = $("#input-city");
+var searchSection = $("#form-extraBtns");
+var lattitude, longitude;
+
+
 $("#search-btn").on("click", function(event){
     event.preventDefault();
-
-    var inputCity = $("#input-city").val();
+    var cityName = inputCity.val();
 
     var cityButton = $("<button>");
-    cityButton.text(inputCity);
+    cityButton.attr("data-city", inputCity.val());
+    cityButton.text(inputCity.val());
     cityButton.addClass("btn");
-    $("#form-extraBtns").append(cityButton);
-    $("#form-extraBtns").append($("<br>"));
+    searchSection.append(cityButton, $("<br>"));
 
-    console.log(inputCity);
+    currentWeather(cityName);
+    fiveDayWeather(cityName);
 
-    currentWeather();
-    fiveDayWeather();
 
     $("#city-form").trigger("reset");
 });
 
-function currentWeather(){
-    var inputCity = $("#input-city").val();
+searchSection.on("click", ".btn", function(){
+    var cityName = $(this).attr("data-city");
+    currentWeather(cityName);
+    fiveDayWeather(cityName);
+});
+
+function currentWeather(city){
+    
     var apiKey = "acb674f7dc9a574ba0b5c0ef2926ec4f"
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + inputCity + "&appid=" + apiKey + "&units=imperial";
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
 
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response){
-        console.log(response);
         $("#current-weather").empty();
+        console.log(response);
 
         var unixTime = response.dt;
         var date = new Date(unixTime * 1000);
@@ -35,13 +44,12 @@ function currentWeather(){
         var month = date.getMonth();
         var year = date.getFullYear();
         var today = (month + 1) + "/" + day + "/" + year;
-        console.log(today);
 
         var cityDate = $("<h3>");
         var weatherIcon = $("<img>");
         var iconURL = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
         weatherIcon.attr("src", iconURL);
-        cityDate.text(inputCity + " (" + today + ") ");
+        cityDate.text(response.name + " (" + today + ") ");
         cityDate.append(weatherIcon);
         $("#current-weather").append(cityDate);
 
@@ -54,25 +62,28 @@ function currentWeather(){
         var windSpeed = $("<p>");
         windSpeed.text("Wind Speed: " + response.wind.speed + " MPH");
 
-        var uvIndex = $("<p>");
-        uvIndex.text("UV Index: ");
-
         $("#current-weather").append(currentTemp, currentHumidity, windSpeed);
+
+        $(".btn").attr("data-lat", response.coord.lat);
+        $(".btn").attr("data-lon", response.coord.lon);
+
+        lattitude = $(".btn").attr("data-lat");
+        longitude = $(".btn").attr("data-lon");
+        console.log(lattitude, longitude);
+        uvIndex(lattitude, longitude);
 
     });
 }
 
-function fiveDayWeather(){
+function fiveDayWeather(city){
     $("#five-day").empty();
-    var inputCity = $("#input-city").val();
     var apiKey = "acb674f7dc9a574ba0b5c0ef2926ec4f"
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + inputCity + "&appid=" + apiKey + "&units=imperial";
+    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial";
 
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response){
-        console.log(response);
 
         var forcastTitle = $("<h3>");
         var forecastDiv = $("<div>");
@@ -83,14 +94,12 @@ function fiveDayWeather(){
         for (var i = 0; i < response.list.length; i++){
 
             if (response.list[i].dt_txt.substring(11) === "12:00:00"){
-                console.log("Mid-day");
                 var unixTime = response.list[i].dt;
                 var date = new Date(unixTime * 1000);
                 var day = date.getDate();
                 var month = date.getMonth();
                 var year = date.getFullYear();
                 var today = (month + 1) + "/" + day + "/" + year;
-                console.log(today);
 
                 var dayDiv = $("<div>");
                 var forecastDate = $("<p>");
@@ -112,5 +121,32 @@ function fiveDayWeather(){
             }
 
         }
+    });
+}
+
+function uvIndex(lat, lon){
+    var apiKey = "acb674f7dc9a574ba0b5c0ef2926ec4f";
+    var queryURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response){
+        console.log(response);
+        var uvIndexElement = $("<p>");
+        var uvValue = $("<p>");
+        uvValue.text(response.value);
+        uvIndexElement.text("Noon UV Index: ");
+        uvIndexElement.append(uvValue);
+        $("#current-weather").append(uvIndexElement);
+
+        if (response.value < 3){
+            uvValue.addClass("favorable");
+        } else if (response.value > 2 && response.value < 8){
+            uvValue.addClass("moderate");
+            } else if (response.value > 7){
+                uvValue.addClass("severe");
+            }
+
     });
 }
