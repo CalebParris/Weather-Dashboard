@@ -29,7 +29,7 @@ searchSection.on("click", ".btn", function(){
 });
 
 function currentWeather(city){
-    
+  
     var apiKey = "acb674f7dc9a574ba0b5c0ef2926ec4f"
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
 
@@ -77,6 +77,8 @@ function currentWeather(city){
 
 function fiveDayWeather(city){
     $("#five-day").empty();
+
+
     var apiKey = "acb674f7dc9a574ba0b5c0ef2926ec4f"
     var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial";
 
@@ -151,5 +153,7 @@ function uvIndex(lat, lon){
     });
 }
 
-currentWeather(localStorage.getItem("City"));
-fiveDayWeather(localStorage.getItem("City"));
+if (localStorage.getItem("City") !== null){
+    currentWeather(localStorage.getItem("City"));
+    fiveDayWeather(localStorage.getItem("City"));
+}
