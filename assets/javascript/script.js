@@ -6,10 +6,19 @@ var lattitude, longitude;
 $("#search-btn").on("click", function(event){
     event.preventDefault();
     var cityName = inputCity.val();
-    var regex = /^[a-zA-Z\ ]*$/;
+    // var regex = /^[0-9!@#$%^&*(),.?":{}|<>]*$/;
 
-    if (cityName.trim() === "" || cityName !== regex){
+    if (cityName.trim() === "" ){
+        $("#city-form").trigger("reset");
         return false;
+    }
+
+    for (var i = 0; i < cityName.length; i++){
+        var regex = /^[0-9!@#$%^&*(),.?":{}|<>]*$/;
+        if (regex.test(cityName[i])){
+            $("#city-form").trigger("reset");
+            return false;
+        }
     }
 
     var cityButton = $("<button>");
