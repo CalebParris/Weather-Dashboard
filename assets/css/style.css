@@ -71,10 +71,6 @@ p {
     margin-top: 30px;
 }
 
-/* .forecast {
-    display: grid;
-    grid-template-columns: repeat(5, auto);
-} */
 
 .forecast-day {
     display: inline-block;
