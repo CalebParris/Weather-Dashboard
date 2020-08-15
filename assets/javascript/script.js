@@ -6,7 +6,6 @@ var lattitude, longitude;
 $("#search-btn").on("click", function(event){
     event.preventDefault();
     var cityName = inputCity.val();
-    // var regex = /^[0-9!@#$%^&*(),.?":{}|<>]*$/;
 
     if (cityName.trim() === "" ){
         $("#city-form").trigger("reset");
@@ -151,6 +150,7 @@ function uvIndex(lat, lon){
         console.log(response);
         var uvIndexElement = $("<p>");
         var uvValue = $("<p>");
+        uvIndexElement.addClass("ultra-violet")
         uvValue.text(response.value);
         uvIndexElement.text("Noon UV Index: ");
         uvIndexElement.append(uvValue);
