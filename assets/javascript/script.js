@@ -62,7 +62,7 @@ function currentWeather(city){
 
         var cityDate = $("<h3>");
         var weatherIcon = $("<img>");
-        var iconURL = "https://cors-anywhere.herokuapp.com/http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+        var iconURL = "https://cors-anywhere.herokuapp.com/http://openweathermap.org/img/wn/" + response.weather[0].icon + ".png";
         weatherIcon.attr("src", iconURL);
         cityDate.text(response.name + " (" + today + ") ");
         cityDate.append(weatherIcon);
@@ -121,7 +121,7 @@ function fiveDayWeather(city){
                 var forecastIcon = $("<img>");
                 var forecastTemp = $("<p>");
                 var forecastHumidity = $("<p>");
-                var iconURL = "https://cors-anywhere.herokuapp.com/http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png";
+                var iconURL = "https://cors-anywhere.herokuapp.com/http://openweathermap.org/img/wn/" + response.list[i].weather[0].icon + ".png";
 
                 dayDiv.addClass("forecast-day")
                 forecastDate.text(today);
