@@ -44,7 +44,7 @@ searchSection.on("click", ".btn", function(){
 function currentWeather(city){
   
     var apiKey = "acb674f7dc9a574ba0b5c0ef2926ec4f"
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
+    var queryURL = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
 
     $.ajax({
         url: queryURL,
@@ -62,7 +62,7 @@ function currentWeather(city){
 
         var cityDate = $("<h3>");
         var weatherIcon = $("<img>");
-        var iconURL = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+        var iconURL = "https://cors-anywhere.herokuapp.com/http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
         weatherIcon.attr("src", iconURL);
         cityDate.text(response.name + " (" + today + ") ");
         cityDate.append(weatherIcon);
@@ -93,7 +93,7 @@ function fiveDayWeather(city){
 
 
     var apiKey = "acb674f7dc9a574ba0b5c0ef2926ec4f"
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial";
+    var queryURL = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial";
 
     $.ajax({
         url: queryURL,
@@ -121,7 +121,7 @@ function fiveDayWeather(city){
                 var forecastIcon = $("<img>");
                 var forecastTemp = $("<p>");
                 var forecastHumidity = $("<p>");
-                var iconURL = "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png";
+                var iconURL = "https://cors-anywhere.herokuapp.com/http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png";
 
                 dayDiv.addClass("forecast-day")
                 forecastDate.text(today);
@@ -141,7 +141,7 @@ function fiveDayWeather(city){
 
 function uvIndex(lat, lon){
     var apiKey = "acb674f7dc9a574ba0b5c0ef2926ec4f";
-    var queryURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+    var queryURL = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
 
     $.ajax({
         url: queryURL,

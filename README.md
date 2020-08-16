@@ -13,6 +13,6 @@ The objectives of this homework to make a weather dashboard include:
 ## Screenshots & Links
 Here is a link to the app: 
 
-Here is a screenshot of the working app:
+Here is a screenshot of the working app: https://calebparris.github.io/Weather-Dashboard/
 
 ![Weather Dashboard](assets/images/Weather-Dashboard.png)
